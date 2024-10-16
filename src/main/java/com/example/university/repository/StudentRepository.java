@@ -1,28 +1,20 @@
-/*
- *
- * You can use the following import statements
- * 
- * import java.util.ArrayList;
- * 
- */
-
 package com.example.university.repository;
 
-import java.util.*;
-import com.example.university.model.*;
+import com.example.university.model.Course;
+import com.example.university.model.Student;
+
+import java.util.List;
 
 public interface StudentRepository {
-
-    ArrayList<Student> getStudents();
+    List<Student> getStudents();
 
     Student getStudentById(int studentId);
 
-    Student addStudent(Student student);
+    Student addStudent(Student studentId);
 
-    Student upadateStudent(Student student, int studentId);
+    Student updateStudent(int studentId, Student student);
 
-    void deleteStudentById(int studentId);
+    void deleteStudent(int studentId);
 
-    List<Course> getStudentCourses(int stuentId);
-
+    List<Course> getStudentCourses(int studentId);
 }

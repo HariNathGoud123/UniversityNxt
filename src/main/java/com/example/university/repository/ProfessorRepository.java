@@ -1,27 +1,32 @@
-/*
- *
- * You can use the following import statements
- * 
- * import java.util.ArrayList;
- * 
- */
-
 package com.example.university.repository;
 
-import java.util.*;
-import com.example.university.model.*;
 
+import com.example.university.model.Course;
+import com.example.university.model.Professor;
+import org.springframework.stereotype.Repository;
+
+
+import java.util.List;
+
+
+@Repository
 public interface ProfessorRepository {
-    ArrayList<Professor> getProfessors();
 
-    Professor getProfessorById(int profressorId);
+
+    List<Professor> getProfessors();
+
+
+    Professor getProfessorById(Integer professorId);
+
 
     Professor addProfessor(Professor professor);
 
-    Professor updateProfessor(Professor professor, int professorId);
 
-    void deleteProfessorById(int professorId);
+    Professor updateProfessor(int professorId, Professor professor);
+
+
+    void deleteProfessor(int professorId);
+
 
     List<Course> getProfessorCourses(int professorId);
-
 }

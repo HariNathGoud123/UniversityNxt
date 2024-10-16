@@ -1,33 +1,27 @@
-/*
- *
- * You can use the following import statements
- * 
- * import org.springframework.beans.factory.annotation.Autowired;
- * import org.springframework.web.bind.annotation.*;
- * import java.util.ArrayList;
- * 
- */
 package com.example.university.controller;
 
+import com.example.university.model.Course;
+import com.example.university.model.Student;
+import com.example.university.service.StudentJpaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.*;
-import com.example.university.service.*;
-import com.example.university.model.*;
+
+import java.util.List;
 
 @RestController
 public class StudentController {
+
     @Autowired
-    StudentJpaService studentJpaService;
+    private StudentJpaService studentJpaService;
 
     @GetMapping("/students")
     public List<Student> getStudents() {
         return studentJpaService.getStudents();
     }
 
-    @GetMapping("students/{studentId}")
-    public Student getStudentById(@PathVariable("studentId") int studentId) {
-        return studentJpaService.getStudentById(studentId);
+    @GetMapping("/students/{id}")
+    public Student getStudentById(@PathVariable Integer id) {
+        return studentJpaService.getStudentById(id);
     }
 
     @PostMapping("/students")
@@ -35,19 +29,18 @@ public class StudentController {
         return studentJpaService.addStudent(student);
     }
 
-    @PutMapping("students/{studentId}")
-    public Student updateStudent(@RequestBody Student student, @PathVariable("studentId") int studentId) {
-        return studentJpaService.upadateStudent(student, studentId);
+    @PutMapping("/students/{id}")
+    public Student updateStudent(@RequestBody Student student, @PathVariable("id") int id) {
+        return studentJpaService.updateStudent(id, student);
     }
 
-    @DeleteMapping("students/{studentId}")
-    public void deleteStudent(@PathVariable("studentId") int studentId) {
-        studentJpaService.deleteStudentById(studentId);
+    @DeleteMapping("/students/{id}")
+    public void deleteStudent(@PathVariable("id") int id) {
+        studentJpaService.deleteStudent(id);
     }
 
     @GetMapping("/students/{studentId}/courses")
-    public List<Course> getStudentcourses(@PathVariable("studentId") int studentId) {
+    public List<Course> getStudentCourses(@PathVariable("studentId") int studentId) {
         return studentJpaService.getStudentCourses(studentId);
     }
-
 }

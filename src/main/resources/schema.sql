@@ -9,6 +9,7 @@ create table if not exists student(
     email VARCHAR(100) NOT NULL
 );
 
+
 create table if not exists course(
      id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -17,10 +18,11 @@ create table if not exists course(
     FOREIGN KEY (professorId) REFERENCES professor(id)
 );
 
+
 CREATE TABLE IF NOT EXISTS course_student (
-  studentid INT,
-  courseid INT,
-  PRIMARY KEY (studentid, courseid),
-  FOREIGN KEY (studentid) REFERENCES student(id),
-  FOREIGN KEY (courseid) REFERENCES course(id)
+  studentId INT, 
+  courseId INT, 
+  PRIMARY KEY (studentId, courseId),  
+  FOREIGN KEY (studentId) REFERENCES student(id), 
+  FOREIGN KEY (courseId) REFERENCES course(id) 
 );

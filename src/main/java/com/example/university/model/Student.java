@@ -1,73 +1,60 @@
-/*
- *
- * You can use the following import statements
- * 
- * import javax.persistence.*;
- * 
- */
-
 package com.example.university.model;
 
-import java.util.*;
+import java.util.List;
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "student")
 public class Student {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private int studentId;
-  @Column(name = "name")
 
-  private String studentName;
-  @Column(name = "email")
-  private String email;
-  @ManyToMany(mappedBy = "students")
-  @JsonIgnoreProperties("students")
-  private List<Course> courses;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int studentId;
 
-  public void setStudentId(int studentId) {
-    this.studentId = studentId;
-  }
+    @Column(name = "name")
+    private String studentName;
 
-  public int getStudentId() {
-    return this.studentId;
-  }
+    @Column(name = "email")
+    private String email;
 
-  public void setStudentName(String studentName) {
-    this.studentName = studentName;
-  }
+    @ManyToMany(mappedBy = "students")
+    @JsonIgnoreProperties("students")
+    private List<Course> courses;
 
-  public String getStudentName() {
-    return this.studentName;
-  }
+    public Student() {
+    }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+    public int getStudentId() {
+        return studentId;
+    }
 
-  public String getEmail() {
-    return this.email;
-  }
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
 
-  public void setcourses(List<Course> courses) {
-    this.courses = courses;
-  }
+    public String getStudentName() {
+        return studentName;
+    }
 
-  public List<Course> getCourses() {
-    return this.courses;
-  }
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 
-  public Student() {
-  }
+    public String getEmail() {
+        return email;
+    }
 
-  public Student(int studentId, String studentName, String email, List<Course> courses) {
-    this.studentId = studentId;
-    this.studentName = studentName;
-    this.email = email;
-    this.courses = courses;
-  }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 }
